@@ -15,10 +15,8 @@ function App() {
       setMessages((prev) => {
         const lastBot = prev[prev.length - 1];
         if (lastBot && lastBot.role === 'bot') {
-          // Append to last bot message
           return [...prev.slice(0, -1), { ...lastBot, text: lastBot.text + data.chunk }];
         } else {
-          // New bot message
           return [...prev, { role: 'bot', text: data.chunk }];
         }
       });

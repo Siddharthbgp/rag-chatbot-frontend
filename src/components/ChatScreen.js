@@ -1,24 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ChatScreen = ({ messages, socket }) => {
   const [input, setInput] = useState('');
+  const [theme, setTheme] = useState('light'); // Local theme state
+
+  useEffect(() => {
+    if (socket) {
+      // No need for isTyping logic
+    }
+  }, [socket]);
 
   const handleSend = (e) => {
     e.preventDefault();
     if (input.trim() && socket) {
       console.log('Sending message:', input);
       socket.emit('sendMessage', { sessionId: null, query: input });
-      setInput(''); // Clear input after sending
-    } else {
-      console.log('Socket not ready or input empty');
+      setInput('');
     }
   };
 
   const handleReset = () => {
     if (socket) {
       console.log('Resetting session');
-      socket.emit('resetSession'); // Emit reset event
+      socket.emit('resetSession');
     }
+  };
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
   const renderMessage = (text) => {
@@ -26,7 +35,13 @@ const ChatScreen = ({ messages, socket }) => {
   };
 
   return (
-    <div className="chat-container">
+    <div className={`chat-container ${theme}`}>
+      <header className="chat-header">
+        <h1>Welcome to VooshNews Nation Pvt Ltd</h1>
+        <button onClick={toggleTheme} className="theme-toggle">
+          Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
+      </header>
       <div className="messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.role === 'user' ? 'user-message' : 'bot-message'}`}>

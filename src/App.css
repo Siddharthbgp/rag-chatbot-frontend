@@ -9,13 +9,33 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.chat-container.light {
+  background-color: #fff;
+  border-color: #ccc;
+  color: #333;
+}
+
+.chat-container.dark {
+  background-color: #1a1a2e;
+  border-color: #444;
+  color: #e0e0e0;
 }
 
 .messages {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
-  background: #f9f9f9;
+}
+
+.messages.light {
+  background-color: #f9f9f9;
+}
+
+.messages.dark {
+  background-color: #2a2a3a;
 }
 
 .message {
@@ -42,6 +62,16 @@
   text-align: right;
 }
 
+.controls.light {
+  border-top-color: #ccc;
+  background-color: #e9ecef;
+}
+
+.controls.dark {
+  border-top-color: #444;
+  background-color: #343a40;
+}
+
 .reset-button {
   padding: 5px 10px;
   background: #ff4444;
@@ -61,11 +91,33 @@
   border-top: 1px solid #ccc;
 }
 
+.input-form.light {
+  border-top-color: #ccc;
+  background-color: #f8f9fa;
+}
+
+.input-form.dark {
+  border-top-color: #444;
+  background-color: #3a3a4a;
+}
+
 .input-field {
   flex: 1;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+.input-field.light {
+  border-color: #ccc;
+  background-color: #fff;
+  color: #333;
+}
+
+.input-field.dark {
+  border-color: #555;
+  background-color: #2a2a3a;
+  color: #e0e0e0;
 }
 
 .send-button {
@@ -80,6 +132,43 @@
 
 .send-button:hover {
   background: #45a049;
+}
+
+.App {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0; /* Static page background */
+}
+
+.chat-header {
+  background-color: #2a9d8f;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.theme-toggle {
+  background-color: #e76f51;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: #f4a261;
 }
 
 @media (max-width: 600px) {
